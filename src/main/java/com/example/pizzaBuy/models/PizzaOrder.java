@@ -1,13 +1,20 @@
 package com.example.pizzaBuy.models;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
+@Entity
 public class PizzaOrder {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private Date createdAt = new Date();
     @NotBlank(message = "delivery name is required")
     private String deliveryName;
     @NotBlank(message = "delivery street is required")
@@ -17,6 +24,7 @@ public class PizzaOrder {
     @NotBlank(message = "delivery phone is required")
     private String deliveryPhone;
 
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Pizza> pizzas = new ArrayList<>();
 
     public void addPizza(Pizza pizza){

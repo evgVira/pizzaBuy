@@ -2,6 +2,8 @@ package com.example.pizzaBuy;
 
 import com.example.pizzaBuy.models.Ingredient;
 import com.example.pizzaBuy.models.Ingredient.Type;
+import com.example.pizzaBuy.repositories.IngredientRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -9,15 +11,14 @@ import java.util.HashMap;
 import java.util.Map;
 @Component
 public class IngredientByIdConverter implements Converter<String, Ingredient> {
-    private Map<String, Ingredient> ingredientMap = new HashMap<>();
-    public IngredientByIdConverter(){
-        ingredientMap.put("PEP", new Ingredient("PEP","Pepperoni", Type.PEPPERONI));
-        ingredientMap.put("CHE", new Ingredient("CHE", "Cheese", Type.CHEESE));
-        ingredientMap.put("VEG", new Ingredient("VEG", "Veggies", Type.VEGGIES));
-        ingredientMap.put("SAU", new Ingredient("SAU", "Sauce", Type.SAUCE));
+    private final IngredientRepository ingredientRepository;
+    @Autowired
+    public IngredientByIdConverter(IngredientRepository ingredientRepository){
+        this.ingredientRepository = ingredientRepository;
     }
+
     @Override
     public Ingredient convert(String id){
-        return ingredientMap.get(id);
+        return ingredientRepository.findById(id).orElse(null);
     }
 }

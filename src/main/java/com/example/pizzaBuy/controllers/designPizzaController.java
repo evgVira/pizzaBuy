@@ -4,8 +4,10 @@ import com.example.pizzaBuy.models.Ingredient;
 import com.example.pizzaBuy.models.Ingredient.Type;
 import com.example.pizzaBuy.models.Pizza;
 import com.example.pizzaBuy.models.PizzaOrder;
+import com.example.pizzaBuy.repositories.IngredientRepository;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -24,17 +26,17 @@ import java.util.stream.Collectors;
 */
 @SessionAttributes("pizzaOrder")
 public class designPizzaController {
+    private final IngredientRepository ingredientRepository;
+    @Autowired
+    public designPizzaController(IngredientRepository ingredientRepository){
+        this.ingredientRepository = ingredientRepository;
+    }
     @ModelAttribute
     public void addIngredientsToModel(Model model){
-        List<Ingredient> ingredientList = Arrays.asList(
-                new Ingredient("PEP", "Pepperoni", Type.PEPPERONI),
-                new Ingredient("CHS", "Cheese", Type.CHEESE),
-                new Ingredient("VEG", "Veggies", Type.VEGGIES),
-                new Ingredient("SAU", "Sauce", Type.SAUCE));
         Type[] types = Type.values();
         for(Type type : types){
             model.addAttribute(type.toString().toLowerCase(),
-                    filterByType(ingredientList, type));
+                    filterByType(ingredientRepository.findAll(), type));
         }
     }
     @ModelAttribute(name = "pizza")
