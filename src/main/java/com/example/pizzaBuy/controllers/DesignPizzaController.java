@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,10 +24,10 @@ import java.util.stream.Collectors;
     так как будем его использовать в дальнейшем в других запросах
 */
 @SessionAttributes("pizzaOrder")
-public class designPizzaController {
+public class DesignPizzaController {
     private final IngredientRepository ingredientRepository;
     @Autowired
-    public designPizzaController(IngredientRepository ingredientRepository){
+    public DesignPizzaController(IngredientRepository ingredientRepository){
         this.ingredientRepository = ingredientRepository;
     }
     @ModelAttribute

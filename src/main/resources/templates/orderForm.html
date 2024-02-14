@@ -11,11 +11,9 @@
 
     <h3>Your pizza in this order: </h3>
     <a th:href="@{/design}" id="another">Choose another pizza</a><br/>
-    <ul>
-        <div th:each="pizza : ${pizzaOrder.pizzas}">
-            <span th:text="${pizza.name}"></span>
-        </div>
-    </ul>
+        <ul>
+            <li th:each="pizza : ${pizzaOrder.pizzas}"><span th:text="${pizza.name}">pizza name</span></li>
+        </ul>
 
     <h3>Deliver my pizza to...</h3>
 
@@ -40,7 +38,7 @@
     <label for="deliveryPhone">Phone: </label>
     <input type="text" th:field="*{deliveryPhone}"/>
     <span class="validationError" th:if="${#fields.hasErrors('deliveryPhone')}"
-          th:errors="*{deliveryPhone}">Delivery Phome Error</span>
+          th:errors="*{deliveryPhone}">Delivery Phone Error</span>
     <br/>
 
     <input type="submit" value="Submit Order!"/>

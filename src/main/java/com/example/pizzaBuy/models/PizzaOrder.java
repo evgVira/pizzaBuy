@@ -14,7 +14,9 @@ public class PizzaOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Date createdAt = new Date();
+    @ManyToOne
+    private User user;
+    private Date placedAt;
     @NotBlank(message = "delivery name is required")
     private String deliveryName;
     @NotBlank(message = "delivery street is required")
@@ -29,5 +31,9 @@ public class PizzaOrder {
 
     public void addPizza(Pizza pizza){
         pizzas.add(pizza);
+    }
+    @PrePersist
+    void placedAt(){
+        this.placedAt = new Date();
     }
 }

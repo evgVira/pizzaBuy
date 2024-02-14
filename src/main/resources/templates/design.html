@@ -7,7 +7,10 @@
 <body>
 <h1>Choose your Pizza!</h1>
 <img th:src="@{/images/pic1.jpg}">
-<form method="post" th:object="${pizza}">
+<form method="post" th:action="@{/logout}">
+    <input type="submit" value="Logout"/>
+</form>
+<form method="post" th:object="${pizza}" th:action="@{/design}" id="orderForm">
     <div class="grid">
         <div id="protein">
             <div th:each="ingredient : ${protein}">

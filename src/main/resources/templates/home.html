@@ -7,5 +7,17 @@
 <body>
 <h1>Welcome to PizzaBuy!</h1>
 <img th:src="@{/images/pic1.jpg}"/>
+
+<form method="post" th:action="@{/login}" id="loginForm">
+    <input type="submit" value="Login"/>
+</form></br>
+
+<form th:action="@{/design}">
+    <input type="submit" value="Create order">
+</form></br>
+
+<form method="post" th:action="@{/logout}" id="logoutForm">
+    <input type="submit" value="Logout"/>
+</form></br>
 </body>
 </html>

@@ -13,7 +13,6 @@ import java.util.Date;
 public class Ingredient {
     @Id
     private final String id;
-    private final Date placedAt = new Date();
     private final String name;
     private final Type type;
 
