@@ -2,10 +2,8 @@ package com.example.pizzaBuy.controllers;
 
 import com.example.pizzaBuy.models.PizzaOrder;
 import com.example.pizzaBuy.models.User;
-import com.example.pizzaBuy.repositories.UserRepository;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import java.security.Principal;
 
 @RequestMapping("/orders")
 @Controller

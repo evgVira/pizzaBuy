@@ -19,10 +19,6 @@ import java.util.stream.Collectors;
 @Controller
 @Slf4j
 @RequestMapping("/design")
-/*
-    Объявляем объект pizzaOrder на уровне сеанса,
-    так как будем его использовать в дальнейшем в других запросах
-*/
 @SessionAttributes("pizzaOrder")
 public class DesignPizzaController {
     private final IngredientRepository ingredientRepository;
