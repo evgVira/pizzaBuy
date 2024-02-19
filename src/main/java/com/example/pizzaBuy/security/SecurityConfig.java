@@ -4,6 +4,7 @@ import com.example.pizzaBuy.models.User;
 import com.example.pizzaBuy.repositories.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,8 +17,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity)throws Exception{
         return httpSecurity.authorizeHttpRequests(request -> request
-                .requestMatchers("/design", "/orders").hasRole("USER")
-                .anyRequest().permitAll())
+//                        .requestMatchers(HttpMethod.POST, "/ingredients").hasRole("ADMIN")
+//                        .requestMatchers(HttpMethod.DELETE, "/ingredients/**").hasRole("ADMIN")
+                        .requestMatchers("/design", "/orders").hasRole("USER")
+                        .anyRequest().permitAll())
                 .formLogin(login -> login
                         .loginPage("/login")
                         .defaultSuccessUrl("/design"))
