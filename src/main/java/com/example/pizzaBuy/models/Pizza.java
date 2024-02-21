@@ -5,8 +5,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.data.rest.core.annotation.RestResource;
 
 import java.util.List;
 
@@ -14,7 +12,6 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@RestResource(rel = "pizzas", path = "pizzas")
 public class Pizza {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
